@@ -30,10 +30,10 @@ This Rest API is used to manage EipDeclic functions externally (Mobile app iphon
 
 ### Authentification
 
-* NAME : checkCredentials
+* NAME : checkCredentials (login)
 * URI : checkCredentials.php
 * METHOD : POST
-* REQUEST BODY : 
+* REQUEST BODY
 
 ```xml
 {
@@ -45,7 +45,9 @@ This Rest API is used to manage EipDeclic functions externally (Mobile app iphon
 }
 ```
 
-* RESPONSE BODY : 
+* Keep this json in App memory to reuse it with query that need authentification
+
+* RESPONSE BODY
 
 ```xml
 {
@@ -53,310 +55,13 @@ This Rest API is used to manage EipDeclic functions externally (Mobile app iphon
 }
 ```
 
-### Get Methods
+### Logout
 
-* NAME : getOrderedDepartments
-* URI : getOrderedDepartments.php
-
-* NAME : getOrderedDepartmentsObject
-* URI : getOrderedDepartmentsObject.php
-
-* NAME : emailAlreadyExists
-* URI : emailAlreadyExists.php?email=xxx
-
-* NAME : nickNameAlreadyExists
-* URI : nickNameAlreadyExists.php?nickName=xxx
-
-### EducationTips
- 
-* NAME : addEducationTips
-* URI : addEducationTips.php
-* METHOD : POST
-
-```xml
-REQUEST BODY : 
-{
-  "credentials": 
-    {
-      "username": "admin", 
-      "password": "admin"
-    }, 
-  "educationTips": 
-  {
-   "id_education_tips": "1",
-   "title": "dd",
-   "descriptions": "dd",
-   "categories": "dd",
-   "picture": "dd",
-   "link": "dd",
-   "vote": "1",
-   "public": "1",
-   "id_users": "4"
-   }
-}
-```
-
-* NAME : getAllEducationsTips
-* URI : getAllEducationsTips.php?group=xxx
-
-* NAME : getAllEducationTipsByGroupCategoriesObject
-* URI : getAllEducationTipsByGroupCategoriesObject.php?group=xxx
-
-* NAME : getAllEducationTipsByUserId
-* URI : getAllEducationTipsByUserId.php?idUsers=xxx
-
-* NAME : getAllEducationTipsObject
-* URI : getAllEducationTipsObject.php
-
-* NAME : addTipsComment
-* URI : addTipsComment.php?id=xxx
-* id = educationTipsId
-
-* REQUEST BODY
-
-```xml
-{
-  "tipsComment" : "comment"
-}
-```
-
-* NAME : addVoteEducationTips
-* URI : addVoteEducationTips.php?idEducationTips=xxx&vote=xxx
-
-* NAME : getAllEducationTipsByGroupCategories
-* URI : getAllEducationTipsByGroupCategories.php
-
-* METHOD : POST
-* REQUEST BODY :
- 
-```xml
-{
-  "credentials": 
-    {
-      "username": "xxx", 
-      "password": "xxx"
-    }
-}
-```
-
-* RESPONSE BODY
- 
-```xml
-[
-   {
-       "id_education_tips": "1",
-       "title": "dd",
-       "descriptions": "dd",
-       "categories": "dd",
-       "picture": "dd",
-       "link": "dd",
-       "vote": "2",
-       "public": "1",
-       "id_users": "4"
-   },
-   {
-       "id_education_tips": "3",
-       "title": "test",
-       "descriptions": "test",
-       "categories": "dd",
-       "picture": "dd",
-       "link": "dd",
-       "vote": "2",
-       "public": "2",
-       "id_users": "4"
-   }
-]
-```
-
-* NAME : getFriendsEducationTips
-* URI : getFriendsEducationTips.php
-* METHOD : POST
-* REQUEST BODY
- 
-```xml
-{
-  "credentials": 
-    {
-      "username": "admin", 
-      "password": "admin"
-    }
-}
-```
-
-* RESPONSE BODY
- 
-```xml
-[
-   {
-       "id_education_tips": "7",
-       "title": "ee",
-       "descriptions": "ee",
-       "categories": "ee",
-       "picture": "ee",
-       "link": "ee",
-       "vote": "2",
-       "public": "3",
-       "id_users": "9"
-   }
-]
-```
-
-* NAME : addVoteEducationTips
-* URI : addVoteEducationTips.php?idEducationTips=6&vote=2
-* METHOD : POST
-* REQUEST BODY : 
-* REQUEST BODY
- 
-```xml
-{
-  "credentials": 
-    {
-      "username": "admin", 
-      "password": "admin"
-    }
-}
-```
-
-* RESPONSE BODY
-
-```xml
-{"message":"addVoteEducationTips"}
-```
-
-* NAME : editEducationTips
-* URI : editEducationTips.php
-* METHOD : POST
-* REQUEST BODY :
- 
-```xml
-{
-  "credentials": 
-    {
-      "username": "admin", 
-      "password": "admin"
-    }, 
-  "educationTips": [
-  {
-   "id_education_tips": "1",
-   "title": "dd",
-   "descriptions": "dd",
-   "categories": "dd",
-   "picture": "dd",
-   "link": "dd",
-   "vote": "1",
-   "public": "1",
-   "id_users": "4"
-   }
-   ]
-}
-```
-
-### Friends
- 
-* NAME : addFriend
-* URI : addFriend.php?id=15
-* METHOD : POST
-* REQUEST BODY :
- 
-```xml
-}
-  "credentials": 
-    {
-      "username": "admin", 
-      "password": "admin"
-    }
-}
-```
-
-* NAME : deleteFriend
-* URI : deleteFriend.php?id=15
-* METHOD : POST
-* REQUEST BODY 
- 
-```xml
-}
-  "credentials": 
-    {
-      "username": "admin", 
-      "password": "admin"
-    }
-}
-```
-
-* NAME : getFriends
-* URI : getFriends.php
-* METHOD : POST
-* RESPONSE BODY :
- 
-```xml
-[
-   {
-       "id_users": "9",
-       "nick_name": "ee",
-       "email": "ee@ee.com",
-       "first_name": "ee",
-       "last_name": "ee",
-       "age": "0",
-       "profil_type": "",
-       "job": "",
-       "student_level": "0",
-       "iq_score": "0",
-       "birth_place": "",
-       "department": "0"
-   }
-]
-```
-
-* NAME : getFriendsByFirstNameAndLastName
-* URI : getFriendsByFirstNameAndLastName.php?firstName=ee&lastName=ee
-* METHOD : POST
-* RESPONSE BODY : 
-
-```xml
-[
-   {
-       "id_users": "9",
-       "nick_name": "ee",
-       "email": "ee@ee.com",
-       "first_name": "ee",
-       "last_name": "ee",
-       "age": "0",
-       "profil_type": "",
-       "job": "",
-       "student_level": "0",
-       "iq_score": "0",
-       "birth_place": "",
-       "department": "0"
-   }
-]
-```
-
-* NAME : isFriend
-* URI : isFriend.php?idUsers=1
-* METHOD : POST
-* REQUEST BODY :
-
-```xml
-}
-  "credentials": 
-    {
-      "username": "admin", 
-      "password": "admin"
-    }
-}
-```
-
-* RESPONSE BODY :
-
-```xml
-{
-   "message": false
-}
-```
+* To logout just programmatically remove credential object from app memory
 
 ### Profils :
 
-* NAME : createProfil
+* NAME : createProfil (subscription)
 * URI : createProfil.php
 * METHOD : POST
 * REQUEST BODY :
@@ -383,6 +88,11 @@ REQUEST BODY :
     }
 }
 ```
+
+* Errors : 
+* if email already exists : return HTTP 412
+* if nickName already exists : return HTTP 409
+* else return HTTP 200
 
 * NAME : getAllProfils
 * URI : getAllProfils.php
@@ -517,14 +227,318 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY : 
+* RESPONSE BODY
+```xml
+ 
+```
 
+### Get Methods
 
-### News : 
+* NAME : getOrderedDepartments
+* URI : getOrderedDepartments.php
+
+* NAME : getOrderedDepartmentsObject
+* URI : getOrderedDepartmentsObject.php
+
+* NAME : emailAlreadyExists
+* URI : emailAlreadyExists.php?email=xxx
+
+* NAME : nickNameAlreadyExists
+* URI : nickNameAlreadyExists.php?nickName=xxx
+
+### EducationTips
+ 
+* NAME : addEducationTips
+* URI : addEducationTips.php
+* METHOD : POST
+* REQUEST BODY
+
+```xml
+{
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }, 
+  "educationTips": 
+  {
+   "id_education_tips": "1",
+   "title": "dd",
+   "descriptions": "dd",
+   "categories": "dd",
+   "picture": "dd",
+   "link": "dd",
+   "vote": "1",
+   "public": "1",
+   "id_users": "4"
+   }
+}
+```
+
+* NAME : getAllEducationsTips
+* URI : getAllEducationsTips.php?group=xxx
+
+* NAME : getAllEducationTipsByGroupCategoriesObject
+* URI : getAllEducationTipsByGroupCategoriesObject.php?group=xxx
+
+* NAME : getAllEducationTipsByUserId
+* URI : getAllEducationTipsByUserId.php?idUsers=xxx
+
+* NAME : getAllEducationTipsObject
+* URI : getAllEducationTipsObject.php
+
+* NAME : addTipsComment
+* URI : addTipsComment.php?id=xxx
+* id = educationTipsId
+
+* REQUEST BODY
+
+```xml
+{
+  "tipsComment" : "comment"
+}
+```
+
+* NAME : addVoteEducationTips
+* URI : addVoteEducationTips.php?idEducationTips=xxx&vote=xxx
+
+* NAME : getAllEducationTipsByGroupCategories
+* URI : getAllEducationTipsByGroupCategories.php
+
+* METHOD : POST
+* REQUEST BODY
+ 
+```xml
+{
+  "credentials": 
+    {
+      "username": "xxx", 
+      "password": "xxx"
+    }
+}
+```
+
+* RESPONSE BODY
+ 
+```xml
+[
+   {
+       "id_education_tips": "1",
+       "title": "dd",
+       "descriptions": "dd",
+       "categories": "dd",
+       "picture": "dd",
+       "link": "dd",
+       "vote": "2",
+       "public": "1",
+       "id_users": "4"
+   },
+   {
+       "id_education_tips": "3",
+       "title": "test",
+       "descriptions": "test",
+       "categories": "dd",
+       "picture": "dd",
+       "link": "dd",
+       "vote": "2",
+       "public": "2",
+       "id_users": "4"
+   }
+]
+```
+
+* NAME : getFriendsEducationTips
+* URI : getFriendsEducationTips.php
+* METHOD : POST
+* REQUEST BODY
+ 
+```xml
+{
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}
+```
+
+* RESPONSE BODY
+ 
+```xml
+[
+   {
+       "id_education_tips": "7",
+       "title": "ee",
+       "descriptions": "ee",
+       "categories": "ee",
+       "picture": "ee",
+       "link": "ee",
+       "vote": "2",
+       "public": "3",
+       "id_users": "9"
+   }
+]
+```
+
+* NAME : addVoteEducationTips
+* URI : addVoteEducationTips.php?idEducationTips=6&vote=2
+* METHOD : POST
+* REQUEST BODY : 
+* REQUEST BODY
+ 
+```xml
+{
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}
+```
+
+* RESPONSE BODY
+
+```xml
+{"message":"addVoteEducationTips"}
+```
+
+* NAME : editEducationTips
+* URI : editEducationTips.php
+* METHOD : POST
+* REQUEST BODY
+ 
+```xml
+{
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }, 
+  "educationTips": [
+  {
+   "id_education_tips": "1",
+   "title": "dd",
+   "descriptions": "dd",
+   "categories": "dd",
+   "picture": "dd",
+   "link": "dd",
+   "vote": "1",
+   "public": "1",
+   "id_users": "4"
+   }
+   ]
+}
+```
+
+### Friends
+ 
+* NAME : addFriend
+* URI : addFriend.php?id=15
+* METHOD : POST
+* REQUEST BODY
+ 
+```xml
+}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}
+```
+
+* NAME : deleteFriend
+* URI : deleteFriend.php?id=15
+* METHOD : POST
+* REQUEST BODY 
+ 
+```xml
+}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}
+```
+
+* NAME : getFriends
+* URI : getFriends.php
+* METHOD : POST
+* RESPONSE BODY
+ 
+```xml
+[
+   {
+       "id_users": "9",
+       "nick_name": "ee",
+       "email": "ee@ee.com",
+       "first_name": "ee",
+       "last_name": "ee",
+       "age": "0",
+       "profil_type": "",
+       "job": "",
+       "student_level": "0",
+       "iq_score": "0",
+       "birth_place": "",
+       "department": "0"
+   }
+]
+```
+
+* NAME : getFriendsByFirstNameAndLastName
+* URI : getFriendsByFirstNameAndLastName.php?firstName=ee&lastName=ee
+* METHOD : POST
+* RESPONSE BODY
+
+```xml
+[
+   {
+       "id_users": "9",
+       "nick_name": "ee",
+       "email": "ee@ee.com",
+       "first_name": "ee",
+       "last_name": "ee",
+       "age": "0",
+       "profil_type": "",
+       "job": "",
+       "student_level": "0",
+       "iq_score": "0",
+       "birth_place": "",
+       "department": "0"
+   }
+]
+```
+
+* NAME : isFriend
+* URI : isFriend.php?idUsers=1
+* METHOD : POST
+* REQUEST BODY
+
+```xml
+}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}
+```
+
+* RESPONSE BODY :
+
+```xml
+{
+   "message": false
+}
+```
+
+### News
+
 * NAME : getMyNews
 * URI : getMyNews.php
 * METHOD : POST
-* REQUEST BODY :
+* REQUEST BODY
  
 ```xml
 }
@@ -536,7 +550,8 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY :
+* RESPONSE BODY
+
 ```xml
 [
    {
@@ -557,7 +572,7 @@ REQUEST BODY :
 * NAME : addNewsComment
 * URI : addNewsComment.php?id=xxx
 * id = newsId
-* REQUEST BODY :
+* REQUEST BODY
  
 ```xml
 {
@@ -571,7 +586,7 @@ REQUEST BODY :
 * NAME : addNews
 * URI : addNews.php
 * METHOD : POST
-* REQUEST BODY :
+* REQUEST BODY
  
 ```xml
 {
@@ -591,7 +606,8 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY :
+* RESPONSE BODY
+
 ```xml 
 {"message":"addNews"}
 ```
@@ -599,7 +615,7 @@ REQUEST BODY :
 * NAME : editNews
 * URI : editMyNews.php
 * METHOD : POST
-* REQUEST BODY :
+* REQUEST BODY
  
 ```xml
 {
@@ -619,7 +635,8 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY :
+* RESPONSE BODY
+
 ```xml
 {"message":"editNews"}
 ```
@@ -627,7 +644,8 @@ REQUEST BODY :
 * NAME : getAllNews
 * URI : getAllNews.php
 * METHOD : POST
-* REQUEST BODY :
+* REQUEST BODY
+
 
 ```xml
 }
@@ -639,7 +657,8 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY :
+* RESPONSE BODY
+
 ```xml
 [
    {
@@ -657,7 +676,8 @@ REQUEST BODY :
 * NAME : getOrderedNews
 * URI : getOrderedNews.php
 * METHOD : POST
-* REQUEST BODY :
+* REQUEST BODY
+
 ```xml
 }
   "credentials": 
@@ -668,7 +688,8 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY :
+* RESPONSE BODY
+
 ```xml
 [
    {
@@ -683,7 +704,7 @@ REQUEST BODY :
 * NAME : getLastNews
 * URI : getLastNews.php
 * METHOD : POST
-* REQUEST BODY :
+* REQUEST BODY
  
 ```xml
 }
@@ -695,7 +716,8 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY :
+* RESPONSE BODY
+
 ```xml
 [
    {
@@ -710,7 +732,7 @@ REQUEST BODY :
 * NAME : addVoteNews
 * URI : addVoteNews.php?idNews=6&vote=2
 * METHOD : POST
-* REQUEST BODY :
+* REQUEST BODY
  
 ```xml
 }
@@ -722,12 +744,12 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY :
+* RESPONSE BODY
 ```xml
 {"message":"addVoteNews"}
 ```
 
-### Pratitioner :
+### Pratitioner
  
 * NAME : getAllPratitioner
 * URI : getAllPratitioner.php
@@ -739,11 +761,12 @@ REQUEST BODY :
 * NAME : getAllPratitionerByDepartments
 * URI : getAllPratitionerByDepartments.php?department=75
 
-### Organisations : 
+### Organisations
+
 * NAME : getAllOrganisations
 * URI : getAllOrganisations.php
 * METHOD : POST
-* REQUEST BODY :
+* REQUEST BODY
 
 ```xml
 }
@@ -755,7 +778,8 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY :
+* RESPONSE BODY
+
 ```xml
 [
    {
@@ -785,7 +809,8 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY :
+* RESPONSE BODY
+
 ```xml
 [
    {
@@ -797,8 +822,8 @@ REQUEST BODY :
 ]
 ```
 
-### Schools :
- 
+### Schools
+
 * NAME : getAllSchools
 * URI : getAllSchools.php
 * METHOD : POST
@@ -814,7 +839,8 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY :
+* RESPONSE BODY
+
 ```xml
 [
    {
@@ -849,7 +875,7 @@ REQUEST BODY :
 }
 ```
 
-* RESPONSE BODY :
+* RESPONSE BODY
 ```xml
 [
    {
