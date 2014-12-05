@@ -1,0 +1,955 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Eipdeclic by sbriant</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Eipdeclic</h1>
+        <p>EIPdeclic API</p>
+
+        <p class="view"><a href="https://github.com/sbriant/eipdeclic">View the Project on GitHub <small>sbriant/eipdeclic</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/sbriant/eipdeclic/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/sbriant/eipdeclic/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/sbriant/eipdeclic">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>
+<a id="eip-declic-api-doc" class="anchor" href="#eip-declic-api-doc" aria-hidden="true"><span class="octicon octicon-link"></span></a>Eip Declic API Doc</h2>
+
+<p>This README would normally document whatever steps are necessary to get your application up and running.</p>
+
+<h2>
+<a id="this-rest-api-is-used-to-manage-eipdeclic-functions-externally-mobile-app-iphone-android-" class="anchor" href="#this-rest-api-is-used-to-manage-eipdeclic-functions-externally-mobile-app-iphone-android-" aria-hidden="true"><span class="octicon octicon-link"></span></a>This Rest API is used to manage EipDeclic functions externally (Mobile app iphone, android ...)</h2>
+
+<ul>
+<li>Eip Declic Api</li>
+<li>Version 1.0-SNAPSHOT</li>
+<li><a href="http://www.declic.co">Eip Declic site</a></li>
+</ul>
+
+<h3>
+<a id="set-up" class="anchor" href="#set-up" aria-hidden="true"><span class="octicon octicon-link"></span></a>Set up</h3>
+
+<h4>
+<a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration</h4>
+
+<ul>
+<li>Base url : <a href="http://www.declic.co/rest">http://www.declic.co/rest</a>
+</li>
+<li>HTTP Methods GET POST</li>
+<li>Response Request Doby : JSON</li>
+</ul>
+
+<h3>
+<a id="index" class="anchor" href="#index" aria-hidden="true"><span class="octicon octicon-link"></span></a>Index</h3>
+
+<ul>
+<li>NAME : index</li>
+<li>URI : index.php</li>
+<li>METHOD : GET</li>
+<li>RESPONSE BODY : </li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{"message":"index"}</pre></div>
+
+<h3>
+<a id="authentification" class="anchor" href="#authentification" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authentification</h3>
+
+<ul>
+<li>NAME : checkCredentials (login)</li>
+<li>URI : checkCredentials.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+  "credentials": 
+    {
+      "username": "xxx", 
+      "password": "xxx"
+    }
+}</pre></div>
+
+<ul>
+<li><p>Keep this json in App memory to reuse it with query that need authentification</p></li>
+<li><p>RESPONSE BODY</p></li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+   "message": true
+}</pre></div>
+
+<h3>
+<a id="logout" class="anchor" href="#logout" aria-hidden="true"><span class="octicon octicon-link"></span></a>Logout</h3>
+
+<ul>
+<li>To logout just programmatically remove credential object from app memory</li>
+</ul>
+
+<h3>
+<a id="profils-" class="anchor" href="#profils-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Profils :</h3>
+
+<ul>
+<li>NAME : createProfil (subscription)</li>
+<li>URI : createProfil.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY :</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+  "profils":
+    {
+      "age":"30",
+      "department":"75",
+      "job":"yy",
+      "birth_place":"yy",
+      "first_name":"yy",
+      "iq_score":"80",
+      "last_name":"yy",
+      "profil_type":"WORKER",
+      "student_level":"6"
+    },
+  "users":
+    {
+      "email":"yy",
+      "nick_name":"yy",
+      "password":"yy"
+    }
+}</pre></div>
+
+<ul>
+<li>Errors : </li>
+<li>if email already exists : return HTTP 412</li>
+<li>if nickName already exists : return HTTP 409</li>
+<li><p>else return HTTP 200</p></li>
+<li><p>NAME : getAllProfils</p></li>
+<li>URI : getAllProfils.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY :</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY :</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+   "users":
+   [
+       {
+           "id_users": "4",
+           "nick_name": "admin"
+       },
+       {
+           "id_users": "9",
+           "nick_name": "ee"
+       }
+   ],
+   "profils":
+   [
+       {
+           "id_users": "4",
+           "first_name": "admin",
+           "last_name": "admin",
+           "age": "30",
+           "profil_type": "WORKER",
+           "job": "admin",
+           "student_level": "6",
+           "iq_score": "80",
+           "birth_place": "admin",
+           "department": "75"
+       },
+       {
+           "id_users": "9",
+           "first_name": "ee",
+           "last_name": "ee",
+           "age": "0",
+           "profil_type": "",
+           "job": "",
+           "student_level": "0",
+           "iq_score": "0",
+           "birth_place": "",
+           "department": "0"
+       }
+   ]
+}</pre></div>
+
+<ul>
+<li>NAME : getProfil</li>
+<li>URI : getProfil.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY :</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY :</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+   "users":
+   [
+       {
+           "id_users": "4",
+           "email": "admin@admin.com",
+           "password": "admin",
+           "role": "admin",
+           "enabled": "1",
+           "nick_name": "admin"
+       }
+   ],
+   "profils":
+   [
+       {
+           "id_users": "4",
+           "first_name": "admin",
+           "last_name": "admin",
+           "age": "30",
+           "profil_type": "WORKER",
+           "job": "admin",
+           "student_level": "6",
+           "iq_score": "80",
+           "birth_place": "admin",
+           "department": "75"
+       }
+   ]
+}</pre></div>
+
+<ul>
+<li>NAME : editProfil</li>
+<li>URI : editProfil.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY :</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+    "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }, 
+   "profils":
+       {
+           "id_users": "4",
+           "first_name": "admin",
+           "last_name": "admin",
+           "age": "30",
+           "profil_type": "WORKER",
+           "job": "admin",
+           "student_level": "6",
+           "iq_score": "80",
+           "birth_place": "admin",
+           "department": "75"
+       }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre></pre></div>
+
+<h3>
+<a id="get-methods" class="anchor" href="#get-methods" aria-hidden="true"><span class="octicon octicon-link"></span></a>Get Methods</h3>
+
+<ul>
+<li>NAME : getOrderedDepartments</li>
+<li><p>URI : getOrderedDepartments.php</p></li>
+<li><p>NAME : getOrderedDepartmentsObject</p></li>
+<li><p>URI : getOrderedDepartmentsObject.php</p></li>
+<li><p>NAME : emailAlreadyExists</p></li>
+<li><p>URI : emailAlreadyExists.php?email=xxx</p></li>
+<li><p>NAME : nickNameAlreadyExists</p></li>
+<li>URI : nickNameAlreadyExists.php?nickName=xxx</li>
+</ul>
+
+<h3>
+<a id="educationtips" class="anchor" href="#educationtips" aria-hidden="true"><span class="octicon octicon-link"></span></a>EducationTips</h3>
+
+<ul>
+<li>NAME : addEducationTips</li>
+<li>URI : addEducationTips.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }, 
+  "educationTips": 
+  {
+   "id_education_tips": "1",
+   "title": "dd",
+   "descriptions": "dd",
+   "categories": "dd",
+   "picture": "dd",
+   "link": "dd",
+   "vote": "1",
+   "public": "1",
+   "id_users": "4"
+   }
+}</pre></div>
+
+<ul>
+<li>NAME : getAllEducationsTips</li>
+<li><p>URI : getAllEducationsTips.php?group=xxx</p></li>
+<li><p>NAME : getAllEducationTipsByGroupCategoriesObject</p></li>
+<li><p>URI : getAllEducationTipsByGroupCategoriesObject.php?group=xxx</p></li>
+<li><p>NAME : getAllEducationTipsByUserId</p></li>
+<li><p>URI : getAllEducationTipsByUserId.php?idUsers=xxx</p></li>
+<li><p>NAME : getAllEducationTipsObject</p></li>
+<li><p>URI : getAllEducationTipsObject.php</p></li>
+<li><p>NAME : addTipsComment</p></li>
+<li>URI : addTipsComment.php?id=xxx</li>
+<li><p>id = educationTipsId</p></li>
+<li><p>REQUEST BODY</p></li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+  "tipsComment" : "comment"
+}</pre></div>
+
+<ul>
+<li>NAME : addVoteEducationTips</li>
+<li><p>URI : addVoteEducationTips.php?idEducationTips=xxx&amp;vote=xxx</p></li>
+<li><p>NAME : getAllEducationTipsByGroupCategories</p></li>
+<li><p>URI : getAllEducationTipsByGroupCategories.php</p></li>
+<li><p>METHOD : POST</p></li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+  "credentials": 
+    {
+      "username": "xxx", 
+      "password": "xxx"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_education_tips": "1",
+       "title": "dd",
+       "descriptions": "dd",
+       "categories": "dd",
+       "picture": "dd",
+       "link": "dd",
+       "vote": "2",
+       "public": "1",
+       "id_users": "4"
+   },
+   {
+       "id_education_tips": "3",
+       "title": "test",
+       "descriptions": "test",
+       "categories": "dd",
+       "picture": "dd",
+       "link": "dd",
+       "vote": "2",
+       "public": "2",
+       "id_users": "4"
+   }
+]</pre></div>
+
+<ul>
+<li>NAME : getFriendsEducationTips</li>
+<li>URI : getFriendsEducationTips.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_education_tips": "7",
+       "title": "ee",
+       "descriptions": "ee",
+       "categories": "ee",
+       "picture": "ee",
+       "link": "ee",
+       "vote": "2",
+       "public": "3",
+       "id_users": "9"
+   }
+]</pre></div>
+
+<ul>
+<li>NAME : addVoteEducationTips</li>
+<li>URI : addVoteEducationTips.php?idEducationTips=6&amp;vote=2</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY : </li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{"message":"addVoteEducationTips"}</pre></div>
+
+<ul>
+<li>NAME : editEducationTips</li>
+<li>URI : editEducationTips.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }, 
+  "educationTips": [
+  {
+   "id_education_tips": "1",
+   "title": "dd",
+   "descriptions": "dd",
+   "categories": "dd",
+   "picture": "dd",
+   "link": "dd",
+   "vote": "1",
+   "public": "1",
+   "id_users": "4"
+   }
+   ]
+}</pre></div>
+
+<h3>
+<a id="friends" class="anchor" href="#friends" aria-hidden="true"><span class="octicon octicon-link"></span></a>Friends</h3>
+
+<ul>
+<li>NAME : addFriend</li>
+<li>URI : addFriend.php?id=15</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>NAME : deleteFriend</li>
+<li>URI : deleteFriend.php?id=15</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY </li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>NAME : getFriends</li>
+<li>URI : getFriends.php</li>
+<li>METHOD : POST</li>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_users": "9",
+       "nick_name": "ee",
+       "email": "ee@ee.com",
+       "first_name": "ee",
+       "last_name": "ee",
+       "age": "0",
+       "profil_type": "",
+       "job": "",
+       "student_level": "0",
+       "iq_score": "0",
+       "birth_place": "",
+       "department": "0"
+   }
+]</pre></div>
+
+<ul>
+<li>NAME : getFriendsByFirstNameAndLastName</li>
+<li>URI : getFriendsByFirstNameAndLastName.php?firstName=ee&amp;lastName=ee</li>
+<li>METHOD : POST</li>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_users": "9",
+       "nick_name": "ee",
+       "email": "ee@ee.com",
+       "first_name": "ee",
+       "last_name": "ee",
+       "age": "0",
+       "profil_type": "",
+       "job": "",
+       "student_level": "0",
+       "iq_score": "0",
+       "birth_place": "",
+       "department": "0"
+   }
+]</pre></div>
+
+<ul>
+<li>NAME : isFriend</li>
+<li>URI : isFriend.php?idUsers=1</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY :</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+   "message": false
+}</pre></div>
+
+<h3>
+<a id="news" class="anchor" href="#news" aria-hidden="true"><span class="octicon octicon-link"></span></a>News</h3>
+
+<ul>
+<li>NAME : getMyNews</li>
+<li>URI : getMyNews.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "xxx", 
+      "password": "xxx"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_news": "1",
+       "title": "ff",
+       "descriptions": "ff",
+       "date": "2014-03-31 16:19:37"
+   }
+]</pre></div>
+
+<ul>
+<li>NAME : getPublicHomeNewsCorporate</li>
+<li><p>URI : getPublicHomeNewsCorporate.php</p></li>
+<li><p>NAME : getPublicHomeNews</p></li>
+<li><p>URI : getPublicHomeNews.php</p></li>
+<li><p>NAME : addNewsComment</p></li>
+<li>URI : addNewsComment.php?id=xxx</li>
+<li>id = newsId</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+  "newsComment": "comment"
+}</pre></div>
+
+<ul>
+<li>name : addVoteNews</li>
+<li><p>URI : addVoteNews.php?idNews=xxx&amp;vote=xxx</p></li>
+<li><p>NAME : addNews</p></li>
+<li>URI : addNews.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+    "credentials": {
+        "username": "yy",
+        "password": "yy"
+    },
+    "news": 
+        {
+            "id_news": "1",
+            "title": "ffééé",
+            "descriptions": "",
+            "date": "2014-03-31 16:19:37",
+            "id_users": null
+        }
+
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{"message":"addNews"}</pre></div>
+
+<ul>
+<li>NAME : editNews</li>
+<li>URI : editMyNews.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{
+    "credentials": {
+        "username": "admin",
+        "password": "admin"
+    },
+    "news": 
+        {
+            "id_news": "1",
+            "title": "ffééé",
+            "descriptions": "",
+            "date": "2014-03-31 16:19:37",
+            "id_users": null
+        }
+
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{"message":"editNews"}</pre></div>
+
+<ul>
+<li>NAME : getAllNews</li>
+<li>URI : getAllNews.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_news": "1",
+       "title": "ff",
+       "descriptions": "ff",
+       "date": "2014-03-31 16:19:37"
+   }
+]</pre></div>
+
+<ul>
+<li>NAME : getOrderedNewsObject</li>
+<li><p>URI : getOrderedNewsObject.php</p></li>
+<li><p>NAME : getOrderedNews</p></li>
+<li>URI : getOrderedNews.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_news": "1",
+       "title": "ff",
+       "descriptions": "ff",
+       "date": "2014-03-31 16:19:37"
+   }
+]</pre></div>
+
+<ul>
+<li>NAME : getLastNews</li>
+<li>URI : getLastNews.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_news": "1",
+       "title": "ff",
+       "descriptions": "ff",
+       "date": "2014-03-31 16:19:37"
+   }
+]</pre></div>
+
+<ul>
+<li>NAME : addVoteNews</li>
+<li>URI : addVoteNews.php?idNews=6&amp;vote=2</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>{"message":"addVoteNews"}</pre></div>
+
+<h3>
+<a id="pratitioner" class="anchor" href="#pratitioner" aria-hidden="true"><span class="octicon octicon-link"></span></a>Pratitioner</h3>
+
+<ul>
+<li>NAME : getAllPratitioner</li>
+<li>URI : getAllPratitioner.php</li>
+<li><p>METHOD : POST</p></li>
+<li><p>NAME : getAllPratitionerObject</p></li>
+<li><p>URI : getAllPratitionerObject.php</p></li>
+<li><p>NAME : getAllPratitionerByDepartments</p></li>
+<li>URI : getAllPratitionerByDepartments.php?department=75</li>
+</ul>
+
+<h3>
+<a id="organisations" class="anchor" href="#organisations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Organisations</h3>
+
+<ul>
+<li>NAME : getAllOrganisations</li>
+<li>URI : getAllOrganisations.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_organisations": "1",
+       "title": "test",
+       "descriptions": "",
+       "department": "75"
+   }
+]</pre></div>
+
+<ul>
+<li>NAME : getAllOrganisationsObject</li>
+<li><p>URI : getAllOrganisationsObject.php</p></li>
+<li><p>NAME : getAllOrganisationsByDepartments</p></li>
+<li>URI : getAllOrganisationsByDepartments.php?department=75</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY :</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_organisations": "1",
+       "title": "test",
+       "descriptions": "",
+       "department": "75"
+   }
+]</pre></div>
+
+<h3>
+<a id="schools" class="anchor" href="#schools" aria-hidden="true"><span class="octicon octicon-link"></span></a>Schools</h3>
+
+<ul>
+<li>NAME : getAllSchools</li>
+<li>URI : getAllSchools.php</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY :</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_schools": "1",
+       "title": "test",
+       "descriptions": "test",
+       "department": "75"
+   },
+   {
+       "id_schools": "2",
+       "title": "ffDD",
+       "descriptions": "",
+       "department": "75"
+   }
+]</pre></div>
+
+<ul>
+<li>NAME : getAllSchoolsObject</li>
+<li><p>URI : getAllSchoolsObject.php</p></li>
+<li><p>NAME : getAllSchoolsByDepartments</p></li>
+<li>URI : getAllSchoolsByDepartments.php?department=75</li>
+<li>METHOD : POST</li>
+<li>REQUEST BODY :</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>}
+  "credentials": 
+    {
+      "username": "admin", 
+      "password": "admin"
+    }
+}</pre></div>
+
+<ul>
+<li>RESPONSE BODY</li>
+</ul>
+
+<div class="highlight highlight-xml"><pre>[
+   {
+       "id_schools": "1",
+       "title": "test",
+       "descriptions": "test",
+       "department": "75"
+   },
+   {
+       "id_schools": "2",
+       "title": "ffDD",
+       "descriptions": "",
+       "department": "75"
+   }
+]</pre></div>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/sbriant">sbriant</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-49621909-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
