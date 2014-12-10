@@ -61,10 +61,23 @@ This Rest API is used to manage EipDeclic functions externally (Mobile app iphon
 
 ### Profils :
 
+* Subscription
+* Mandatory fields : nick_name password
+
+```xml
+{
+  "users":
+    {
+      "nick_name":"yy",
+      "password":"yy"
+    }
+}
+```
+
 * NAME : createProfil (subscription)
 * URI : createProfil.php
 * METHOD : POST
-* REQUEST BODY :
+* REQUEST BODY : all fields
  
 ```xml
 {
