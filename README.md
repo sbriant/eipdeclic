@@ -253,6 +253,22 @@ This Rest API is used to manage EipDeclic functions externally (Mobile app iphon
 * NAME : getOrderedDepartmentsObject
 * URI : getOrderedDepartmentsObject.php
 
+* NAME : getCountries
+* URI : getCountries.php
+
+* RESPONSE BODY
+```xml
+{"countriesList" : [{"id_countries":"1","name":"France","code":"fr"},{"id_countries":"2","name":"Belgique","code":"be"},{"id_countries":"3","name":"Suisse","code":"ch"}]}
+```
+
+* NAME : getDepartmentsByCountryCode
+* URI : getDepartmentsByCountryCode.php?country=fr
+
+* RESPONSE BODY
+```xml
+{"departments" : [{"department_id":"1","department_code":"01","department_name":"Ain","country":"fr"} ...
+```
+
 * NAME : emailAlreadyExists
 * URI : emailAlreadyExists.php?email=xxx
 
